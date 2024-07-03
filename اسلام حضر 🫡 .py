@@ -805,4 +805,26 @@ def cek_RAVEN(kuki):
 	game = [i.text for i in x.find_all("h3")]
 	try:
 		for i in range(len(game)):
-			print ("\r%s  \033[0m              ➛ %s%s")%(P,H,game[i]
+			print ("\r%s  \033[0m              ➛ %s%s")%(P,H,game[i].replace("Ditambahkan pada"," Ditambahkan pada"))
+	except AttributeError:
+		print ("\r    %s\033[0m cookie invalid"%(M))
+	w=session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=inactive",cookies={"cookie":"noscript=1;"+kuki}).text
+	sop = bs4.BeautifulSoup(w,"html.parser")
+	x = sop.find("form",method="post")
+	game = [i.text for i in x.find_all("h3")]
+	try:
+		for i in range(len(game)):
+			print ("\r%s  \033[0m              ➛ %s"%(P,game[i].replace("Kedaluwarsa"," Kedaluwarsa")))
+	except AttributeError:
+		print ("\r    %s \033[0mcookie invalid"%(M))
+if __name__=='__main__':
+    try:os.system('git pull')
+    except:pass
+    try:os.mkdir('OK')
+    except:pass
+    try:os.mkdir('CP')
+    except:pass
+    try:os.mkdir('/sdcard/VENOM-FB')
+    except:pass
+    RR()
+
